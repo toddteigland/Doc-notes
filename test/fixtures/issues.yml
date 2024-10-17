@@ -1,0 +1,11 @@
+# Read about fixtures at https://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  appointment: one
+  description: MyString
+  severity: MyString
+
+two:
+  appointment: two
+  description: MyString
+  severity: MyString

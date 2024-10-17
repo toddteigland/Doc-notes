@@ -1,0 +1,15 @@
+<%= form_with model: @appointment, local: true do |form| %>
+  <%= form.label :date %>
+  <%= form.date_field :date %>
+  <br/>
+  <%= form.label :doctor_name %>
+  <%= form.text_field :doctor_name %>
+  <br/>
+  <!-- <%= form.label :issue_id, "Select Issue" %>
+  <%= select_tag 'appointment[issue_id]', options_from_collection_for_select(@issues, 'id', 'description'), include_blank: 'Choose an issue' %>
+  <br/>
+  <%= form.label :note_content, "Notes" %>
+  <%= form.text_area :note_content %> -->
+  <br/>
+  <%= form.submit "Create Appointment" %>
+<% end %>

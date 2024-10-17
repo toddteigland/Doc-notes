@@ -1,0 +1,20 @@
+<h1>Appointment Details</h1>
+<p>Doctor: <%= @appointment.doctor_name %></p>
+<p>Date: <%= @appointment.date %></p>
+<h2>Add Issues</h2>
+<%= form_with model: [@appointment, AppointmentIssue.new], local: true do |form| %>
+  <%= form.label :issue_id, "Select Existing Issue" %>
+  <%= form.collection_select :issue_id, current_user.issues, :id, :description, include_blank: true %>
+  <%= form.label :new_issue_description, "Or Enter New Issue" %>
+  <%= form.text_field :new_issue_description, placeholder: "New issue description" %>
+  <%= form.submit "Add Issue" %>
+<% end %>
+<h2>Issues Discussed</h2>
+<% @appointment.issues.each do |issue| %>
+  <div>
+    <p>Description: <%= issue.description %></p>
+    <!-- Add form for notes related to this issue -->
+    <h3>Add Note</h3>
+  </div>
+<% end %>
+<%= button_to 'Back to appointments', appointments_path, method: :get %>

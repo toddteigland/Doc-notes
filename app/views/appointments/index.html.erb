@@ -1,0 +1,20 @@
+<%= button_to 'Head back home', home_index_path, method: :get %>
+<h1> Appointments.each here!</h1>
+<table>
+  <thead>
+    <tr>Date</tr>
+    <tr>Doctor</tr>
+  </thead>
+  <tbody>
+    <% @appointments.each do | appointment | %>
+      <tr>
+        <td><%= appointment.date %></td>
+        <td><%= appointment.doctor_name %></td>
+        <td><%= button_to 'Edit', edit_appointment_path(appointment), method: :get %></td>
+        <td><%= button_to 'Delete', appointment_path(appointment), method: :delete %></td>
+        <td><%= button_to 'Show', appointment_path(appointment), method: :get %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= button_to 'Create new Appointment', new_appointment_path, method: :get %>
