@@ -1,8 +1,7 @@
 class Issue < ApplicationRecord
-  belongs_to :user
-  has_many :appointment_issues
-  has_many :appointments, through: :appointment_issues
-  has_many :notes
+  has_many :appointment_issues, dependent: :destroy
+  has_many :appointments, through: :appointment_issues 
+  has_many :notes, through: :appointments, dependent: :destroy
 
   validates :description, presence: true
   # validates :severity, presence: true

@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.1].define(version: 2024_10_17_194850) do
+ActiveRecord::Schema[7.1].define(version: 2024_10_30_174901) do
   create_table "appointment_issues", force: :cascade do |t|
     t.integer "appointment_id", null: false
     t.integer "issue_id", null: false
@@ -30,13 +30,11 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_17_194850) do
   end
 
   create_table "issues", force: :cascade do |t|
-    t.integer "appointment_id", null: false
     t.string "description"
     t.string "severity"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.integer "user_id"
-    t.index ["appointment_id"], name: "index_issues_on_appointment_id"
     t.index ["user_id"], name: "index_issues_on_user_id"
   end
 
@@ -46,6 +44,8 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_17_194850) do
     t.datetime "date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.integer "appointment_id", null: false
+    t.index ["appointment_id"], name: "index_notes_on_appointment_id"
     t.index ["issue_id"], name: "index_notes_on_issue_id"
   end
 
@@ -74,7 +74,7 @@ ActiveRecord::Schema[7.1].define(version: 2024_10_17_194850) do
   add_foreign_key "appointment_issues", "appointments"
   add_foreign_key "appointment_issues", "issues"
   add_foreign_key "appointments", "users"
-  add_foreign_key "issues", "appointments"
+  add_foreign_key "notes", "appointments"
   add_foreign_key "notes", "issues"
   add_foreign_key "treatment_plans", "notes"
 end

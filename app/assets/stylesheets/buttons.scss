@@ -1,0 +1,55 @@
+.good-button {
+  border-radius: 3px;
+  background-color: rgb(30, 131, 30);
+  color: white;
+  padding: 4px;
+  
+  &:hover {
+    border:2px solid white;
+    color: black;
+    background-color: rgb(42, 177, 42);
+    cursor: pointer;
+  }
+}
+
+.bad-button {
+  border-radius: 3px;
+  background-color: rgb(196, 2, 2);
+  color: white;
+  padding: 4px;
+
+  &:hover {
+    background-color: red;
+    border:2px solid white;
+    color: black;
+    cursor: pointer;
+  }
+}
+
+.meh-button {
+  border-radius: 3px;
+  background-color: rgb(205, 140, 0);
+  color: white;
+  padding: 4px;
+
+  &:hover {
+    border:2px solid white;
+    color: black;
+    background-color: rgb(255, 175, 3);
+    cursor: pointer;
+  }
+}
+
+.back-button {
+  border-radius: 3px;
+  background-color: rgb(1, 104, 201);
+  color: white;
+  padding: 4px;
+
+  &:hover {
+    border:2px solid white;
+    color: black;
+    background-color: rgb(1, 162, 255);
+    cursor: pointer;
+  }
+}

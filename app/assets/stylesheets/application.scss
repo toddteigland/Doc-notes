@@ -1,0 +1,20 @@
+@import 'buttons';
+@import 'appointments';
+
+body {
+  margin: 0;
+}
+.header-container {
+// background-color: #617991; 
+background-image: url('https://www.transparenttextures.com/patterns/project-paper.png');
+overflow: hidden;
+border-bottom: 1px solid lightgrey;
+padding: 2px;
+}
+.app-container {
+  // background-color: #b39c4d;
+  background-image: url('https://www.transparenttextures.com/patterns/project-paper.png');
+  padding-bottom: 15px;
+  overflow: hidden;
+
+}

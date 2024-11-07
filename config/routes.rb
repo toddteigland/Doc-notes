@@ -8,6 +8,8 @@ Rails.application.routes.draw do
       resources :notes, only: [:create] # Assuming you have a Notes controller
     end
   end
+  resources :issues
+  resources :notes
  
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
 

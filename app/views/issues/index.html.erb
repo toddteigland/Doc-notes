@@ -1,0 +1,30 @@
+<h3>View All Issues</h3>
+<ul>
+  <% @issues.each do |issue| %>
+    <div class="issue">
+      <li>
+        <%= issue.description %>
+        <ol>
+          <% issue.appointments.each do |appointment| %>
+            <li>
+              <ul>
+                <li>Doctor: <%= appointment.doctor_name %></li>
+                <li>Date: <%= appointment.date %></li>
+                <li>
+                  Notes:
+                  <ol>
+                    <% appointment.notes.each do |note| %>
+                      <li><%= note.content %></li>
+                    <% end %>
+                  </ol>
+                </ul>
+              </li>
+            <% end %>
+          </li>
+        </ol>
+      </li>
+    </div>
+  <% end %>
+</ul>
+<%= button_to 'Back to Home', root_path, method: :get, class:"back-button"  %>
+<%= button_to 'View all appointments', appointments_path, method: :get, class:"good-button"  %>

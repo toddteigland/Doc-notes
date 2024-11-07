@@ -1,0 +1,5 @@
+<% form_with model: @note, local: true do |form| %>
+  <%= form.label :content %>
+  <%= form.text_field :content %>
+  <%= form.submit 'Save note change', class:"good-button" %>
+<% end %>

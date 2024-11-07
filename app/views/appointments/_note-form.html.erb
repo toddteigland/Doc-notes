@@ -1,0 +1,8 @@
+<%= form_with model: @note, url: notes_path, local: true do |form| %>
+  <%= form.hidden_field :issue_id, value: note.issue_id %>
+  <%= form.hidden_field :appointment_id, value: note.appointment_id %>
+  <% form.label :content, "Issue notes" %>
+  <%= form.text_area :content, placeholder: "Enter Issue Notes here" %>
+  <br/>
+  <%= form.submit "Add Note", class:"good-button" %>
+<% end %>

@@ -1,20 +1,56 @@
 <h1>Appointment Details</h1>
 <p>Doctor: <%= @appointment.doctor_name %></p>
 <p>Date: <%= @appointment.date %></p>
-<h2>Add Issues</h2>
+<h2>Add Issues:</h2>
 <%= form_with model: [@appointment, AppointmentIssue.new], local: true do |form| %>
   <%= form.label :issue_id, "Select Existing Issue" %>
   <%= form.collection_select :issue_id, current_user.issues, :id, :description, include_blank: true %>
+  <br/>
+  <br/>
   <%= form.label :new_issue_description, "Or Enter New Issue" %>
   <%= form.text_field :new_issue_description, placeholder: "New issue description" %>
-  <%= form.submit "Add Issue" %>
+  <%= form.submit "Add Issue", class:"good-button" %>
 <% end %>
-<h2>Issues Discussed</h2>
-<% @appointment.issues.each do |issue| %>
-  <div>
-    <p>Description: <%= issue.description %></p>
-    <!-- Add form for notes related to this issue -->
-    <h3>Add Note</h3>
+<div class="issues-container">
+  <div class="issue-title">
+    <h2>Issues Discussed:</h2>
   </div>
-<% end %>
-<%= button_to 'Back to appointments', appointments_path, method: :get %>
+  <% @appointment.issues.each do |issue| %>
+    <div class="issue-container">
+      <div class="issue-header">
+        <h3><%= issue.description %></h3>
+      </div>
+      <div class="note-container">
+        <div class="current-notes">
+          <h4>Current Notes:</h4>
+          <ul>
+            <% issue.notes.each do |note| %>
+              <li><%= note.content %></li>
+              <li><%= button_to 'Edit note', edit_note_path, method: :get, class:"meh-button", data: { note_id: note.id } %></li>
+              <div id="edit-note-<%= note.id %>" style="display:none;">
+                <%= render 'notes/form', note: note %>
+              </div>
+            <% end %>
+          </ul>
+        </div>
+        <div class="add-note">
+          <h4>Add Note:</h4>
+          <%= render 'note-form', note: Note.new(issue: issue, appointment_id: @appointment.id) %>
+        </div>
+      </div>
+    </div>
+  <% end %>
+</div>
+<%= button_to 'Back to appointments', appointments_path, method: :get, class:"back-button" %>
+<script>
+  document.addEventListener("DOMContentLoaded", function() {
+    const editButtons = document.querySelectorAll('.meh-button');
+    editButtons.forEach(button => {
+      button.addEventListener('click', function() {
+        const noteId = this.dataset.noteId;
+        const editDiv = document.getElementById(`edit-note-${noteId}`);
+        editDiv.style.display = editDiv.style.display === 'none' ? 'block' : 'none';
+      });
+    });
+  });
+</script>

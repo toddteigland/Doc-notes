@@ -9,10 +9,12 @@ class AppointmentsController < ApplicationController
 
   def show
     @appointment = Appointment.find(params[:id])
-    @issues = current_user.issues
+    @issues = @appointment.issues.includes(:notes) # This will limit notes to each issue
     @appointment_issues = @appointment.appointment_issues # Issues already associated with this appointment
     @notes = @appointment.notes.includes(:issue) # Notes associated with this appointment
+    @note = Note.new(appointment_id: @appointment.id)
   end
+  # ------------------------------------------------------------------------------------------------
 
   def new
     @appointment = current_user.appointments.new
@@ -38,6 +40,7 @@ class AppointmentsController < ApplicationController
       render :new
     end
   end
+  # ------------------------------------------------------------------------------------------------
 
   def edit
     @appointment = Appointment.find(params[:id])
@@ -52,6 +55,7 @@ class AppointmentsController < ApplicationController
       end
     end
   end
+  # ------------------------------------------------------------------------------------------------
 
   def destroy
     @appointment.destroy!
@@ -59,6 +63,7 @@ class AppointmentsController < ApplicationController
       format.html {redirect_to appointment_path, notice: "Appointment has been deleted!"}
     end
   end
+  # ------------------------------------------------------------------------------------------------
 
   private
   def set_appointment

@@ -1,6 +1,6 @@
 class Note < ApplicationRecord
-  belongs_to :issue
   belongs_to :appointment
+  belongs_to :issue
   # has_one :treatment_plan
 
   # validates :content, presence: true

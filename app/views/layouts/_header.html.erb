@@ -1,6 +1,4 @@
-<div style="background-color: #617991; background-image: url('https://www.transparenttextures.com/patterns/project-paper.png'); ">
   <% if user_signed_in? %>
-    <h4><%= current_user.email %></h4>
-    <%= button_to "Log Out", destroy_user_session_path, method: :delete %>
-  <% end %>
-</div>
+  <h4><%= current_user.email %></h4>
+  <%= button_to "Log Out", destroy_user_session_path, method: :delete, class:"meh-button" %>
+<% end %>
